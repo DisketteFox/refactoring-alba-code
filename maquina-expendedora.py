@@ -44,16 +44,17 @@ def darCambio(resto, reservaMonedas, valoresMonedas):
     vueltas = 0
     monedasDevueltas = []
 
-    while vueltas<resto:
+    while vueltas < resto:
         for valor in valoresMonedas:
             if valor <= round(resto,2):
                 monedasDevueltas.append(valor)
-                vueltas+=valor
-                resto-=valor
+                vueltas += valor
+                resto -= valor
                 for i in range(len(reservaMonedas)):
                     if valoresMonedas[i] == valor:
                         reservaMonedas[i] -= 1
     print(f"Tus vueltas son estas: {monedasDevueltas}")
+    return(vueltas)
 
 while continuar:
     opcion = menu(nombresProductos, preciosProductos, dinero)
@@ -62,7 +63,7 @@ while continuar:
     elif opcion == 3:
         dinero += ingresarMoneda(dinero, reservaMonedas, valoresMonedas)
     elif dinero >= preciosProductos[opcion]:
-        darCambio(dinero-preciosProductos[opcion], reservaMonedas, valoresMonedas)
+        dinero = darCambio(dinero-preciosProductos[opcion], reservaMonedas, valoresMonedas)
         print(f"Aquí tienes tu {nombresProductos[opcion]}")
     else:
         print("Dinero insuficiente")
